@@ -2,6 +2,11 @@
 
 Observed on 2026-05-03 from a local Codex session.
 
+Official reference material:
+
+- NVIDIA DGX Spark User Guide: <https://docs.nvidia.com/dgx/dgx-spark/>
+- NVIDIA Build on Spark portal: <https://build.nvidia.com/spark>
+
 ## Identity
 
 - Hostname: `spark-ce3d`
@@ -20,6 +25,7 @@ Observed on 2026-05-03 from a local Codex session.
 
 Inference:
 - This appears to be a Grace-era ARM NVIDIA system, consistent with the surrounding DGX Spark naming, but this package avoids claiming a more specific SKU than the audit directly proved.
+- NVIDIA’s Build on Spark landing page describes DGX Spark workloads as targeting the GB10 Grace Blackwell Superchip, which is useful context for agents, but agents should still verify what this exact host exposes before making model-specific or CUDA-specific claims.
 
 ## Storage
 

@@ -84,3 +84,8 @@ Recommended response when proof is still unavailable:
 - preserve raw command outputs
 - downgrade the claim to `present-but-unverified`
 - avoid model-specific or CUDA-version-specific instructions until native proof exists
+
+When blocked, prefer official NVIDIA material over guesswork:
+
+- use the DGX Spark User Guide for host-management and platform-behavior questions
+- use Build on Spark for supported workload examples and remote-access-oriented getting-started flows

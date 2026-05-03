@@ -12,6 +12,13 @@ This package is not a backup and does not include secrets. It documents the mach
 - OpenClaw and Codex entrypoints that actually work on this host
 - Known traps, especially around Snap-packaged Git and namespaced `$HOME`
 
+## Reference Resources
+
+- NVIDIA DGX Spark User Guide: <https://docs.nvidia.com/dgx/dgx-spark/>
+- NVIDIA Build on Spark portal: <https://build.nvidia.com/spark>
+
+Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, recovery, container runtime, and support guidance. Use Build on Spark for workload playbooks, remote-access quickstarts, and framework-specific examples.
+
 ## What This Does Not Include
 
 - SSH private keys
@@ -52,3 +59,8 @@ This creates:
 - `generated/raw-<timestamp>/...`
 
 The script is designed to degrade gracefully. If a shell cannot prove GPU SKU or CUDA userland, it records the uncertainty instead of inventing facts.
+
+For official follow-up after a refresh:
+
+- compare system behavior and configuration assumptions against the DGX Spark User Guide
+- use Build on Spark playbooks when an agent needs a supported way to stand up a workload on this platform

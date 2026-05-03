@@ -2,6 +2,11 @@
 
 This document is for agents connecting from a Mac to this Linux ARM host over SSH.
 
+Keep these official resources nearby:
+
+- DGX Spark User Guide: <https://docs.nvidia.com/dgx/dgx-spark/>
+- Build on Spark: <https://build.nvidia.com/spark>
+
 ## First Principles
 
 - This is Linux, not macOS.
@@ -100,6 +105,11 @@ If GPU work matters, verify from the native SSH shell:
 command -v nvidia-smi && nvidia-smi
 ls -la /dev/nvidia*
 ```
+
+For system setup and remote access, the official docs are the baseline:
+
+- the DGX Spark User Guide covers hardware overview, first boot, DGX OS, updates, recovery, Docker container runtime, and support
+- Build on Spark includes a "Connect from Another Computer" section and workload playbooks for common Spark tasks
 
 If that still fails, do not improvise a GPU model. Instead:
 
