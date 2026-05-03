@@ -44,6 +44,15 @@ Implications:
 - GPUDirect Storage style device nodes are present.
 - A remote agent should assume GPU capability exists, but should verify exact model, CUDA version, and runtime health from a native SSH shell because `nvidia-smi` was not available in the audited Codex sandbox.
 
+If a future agent still cannot prove the exact GPU SKU or CUDA userland, it should downgrade its claim to one of these levels instead of guessing:
+
+- `proven`: direct output from `nvidia-smi`, `nvcc`, or a working framework probe such as `torch.cuda`
+- `likely`: CUDA directories or packages exist, but no runtime command succeeded
+- `present-but-unverified`: `/dev/nvidia*` exists, proving an NVIDIA stack but not the specific GPU or CUDA userland
+- `unknown`: no reliable signal captured
+
+The package includes `scripts/refresh-audit.sh` to formalize that proof ladder from a native shell.
+
 ## Tooling Surface Actually Observed
 
 Available:

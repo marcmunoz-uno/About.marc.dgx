@@ -77,3 +77,10 @@ During the 2026-05-03 audit:
 Implication:
 
 - exact GPU SKU and some package-manager details should be rechecked from a native SSH login before making hardware-specific promises
+
+Recommended response when proof is still unavailable:
+
+- state the uncertainty explicitly
+- preserve raw command outputs
+- downgrade the claim to `present-but-unverified`
+- avoid model-specific or CUDA-version-specific instructions until native proof exists

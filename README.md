@@ -25,6 +25,7 @@ This package is not a backup and does not include secrets. It documents the mach
 - `SSH_OPERATOR_GUIDE.md` - how a remote agent should behave after SSH login
 - `OPENCLAW_RUNTIME.md` - the local OpenClaw layout and working entrypoints
 - `KNOWN_ISSUES.md` - failures, caveats, and mitigations
+- `scripts/refresh-audit.sh` - rerun a native host audit and emit fresh markdown plus raw artifacts
 - `examples/ssh_config.example` - SSH client template for a Mac operator
 - `examples/bootstrap-session.sh` - safe shell bootstrap for remote sessions
 
@@ -35,3 +36,19 @@ This package is not a backup and does not include secrets. It documents the mach
 3. Export the compatibility variables in `examples/bootstrap-session.sh`.
 4. Prefer wrapper commands from `/home/mxrcmunoz/Desktop/bin/`.
 5. Treat this host as Linux ARM with a Snap-heavy userspace, not as macOS and not as a generic x86 Ubuntu box.
+
+## Refreshing The Audit
+
+From a native SSH shell on the DGX host:
+
+```bash
+cd /path/to/About.marc.dgx
+./scripts/refresh-audit.sh
+```
+
+This creates:
+
+- `generated/MACHINE_AUDIT_<timestamp>.md`
+- `generated/raw-<timestamp>/...`
+
+The script is designed to degrade gracefully. If a shell cannot prove GPU SKU or CUDA userland, it records the uncertainty instead of inventing facts.

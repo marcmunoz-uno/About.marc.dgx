@@ -100,3 +100,15 @@ If GPU work matters, verify from the native SSH shell:
 command -v nvidia-smi && nvidia-smi
 ls -la /dev/nvidia*
 ```
+
+If that still fails, do not improvise a GPU model. Instead:
+
+```bash
+./scripts/refresh-audit.sh
+```
+
+Then use the strongest proof actually captured:
+
+- `nvidia-smi` or torch CUDA enumeration: exact GPU claims are safe
+- only `/dev/nvidia*`: NVIDIA presence is safe, exact GPU claims are not
+- only `cuda` directories: CUDA may be installed, but userland is not proven
