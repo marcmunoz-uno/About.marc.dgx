@@ -32,10 +32,12 @@ Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, re
 ## Package Contents
 
 - `MACHINE_AUDIT.md` - observed host capabilities and constraints
+- `CUDA_USERLAND_ACCESS.md` - how agents should gain and verify CUDA userland access
 - `SSH_OPERATOR_GUIDE.md` - how a remote agent should behave after SSH login
 - `OPENCLAW_RUNTIME.md` - the local OpenClaw layout and working entrypoints
 - `KNOWN_ISSUES.md` - failures, caveats, and mitigations
 - `scripts/refresh-audit.sh` - rerun a native host audit and emit fresh markdown plus raw artifacts
+- `scripts/bootstrap-cuda-userland.sh` - export likely CUDA ARM paths and probe runtime visibility
 - `examples/ssh_config.example` - SSH client template for a Mac operator
 - `examples/bootstrap-session.sh` - safe shell bootstrap for remote sessions
 
