@@ -1,0 +1,13 @@
+Host marc-dgx
+  HostName YOUR_HOST_OR_IP
+  User mxrcmunoz
+  IdentityFile ~/.ssh/YOUR_KEY
+  ServerAliveInterval 30
+  ServerAliveCountMax 6
+  TCPKeepAlive yes
+  RequestTTY yes
+  ForwardAgent no
+  Compression yes
+
+  # Optional: start in a login shell and preload the bootstrap file manually
+  # RemoteCommand bash -lc 'source /home/mxrcmunoz/Desktop/About.marc.dgx/examples/bootstrap-session.sh; exec bash -li'
