@@ -6,6 +6,8 @@ Keep these official resources nearby:
 
 - DGX Spark User Guide: <https://docs.nvidia.com/dgx/dgx-spark/>
 - Build on Spark: <https://build.nvidia.com/spark>
+- NVIDIA Blueprints: <https://build.nvidia.com/blueprints>
+- NeMo Data Designer: <https://build.nvidia.com/nemo/data-designer>
 
 ## First Principles
 
@@ -110,6 +112,8 @@ For system setup and remote access, the official docs are the baseline:
 
 - the DGX Spark User Guide covers hardware overview, first boot, DGX OS, updates, recovery, Docker container runtime, and support
 - Build on Spark includes a "Connect from Another Computer" section and workload playbooks for common Spark tasks
+- Blueprints provides workflow and code-sample patterns for building AI applications
+- NeMo Data Designer provides a hosted synthetic-data workflow with SDK-based setup
 
 If that still fails, do not improvise a GPU model. Instead:
 
@@ -122,3 +126,9 @@ Then use the strongest proof actually captured:
 - `nvidia-smi` or torch CUDA enumeration: exact GPU claims are safe
 - only `/dev/nvidia*`: NVIDIA presence is safe, exact GPU claims are not
 - only `cuda` directories: CUDA may be installed, but userland is not proven
+
+When choosing how to implement a workload after login:
+
+- start with Build on Spark if the goal is Spark-specific enablement
+- check Blueprints if the goal is an end-to-end AI application pattern
+- check NeMo Data Designer if the goal is synthetic dataset generation or data flywheel preparation

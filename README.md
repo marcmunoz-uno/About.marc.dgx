@@ -16,8 +16,10 @@ This package is not a backup and does not include secrets. It documents the mach
 
 - NVIDIA DGX Spark User Guide: <https://docs.nvidia.com/dgx/dgx-spark/>
 - NVIDIA Build on Spark portal: <https://build.nvidia.com/spark>
+- NVIDIA Blueprints catalog: <https://build.nvidia.com/blueprints>
+- NVIDIA NeMo Data Designer: <https://build.nvidia.com/nemo/data-designer>
 
-Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, recovery, container runtime, and support guidance. Use Build on Spark for workload playbooks, remote-access quickstarts, and framework-specific examples.
+Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, recovery, container runtime, and support guidance. Use Build on Spark for workload playbooks, remote-access quickstarts, and framework-specific examples. Use Blueprints when an agent needs a supported application architecture or workflow pattern. Use NeMo Data Designer when the task involves synthetic data generation or hosted NeMo microservices workflows.
 
 ## What This Does Not Include
 
