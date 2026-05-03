@@ -8,6 +8,7 @@ Keep these official resources nearby:
 - Build on Spark: <https://build.nvidia.com/spark>
 - NVIDIA Blueprints: <https://build.nvidia.com/blueprints>
 - NeMo Data Designer: <https://build.nvidia.com/nemo/data-designer>
+- NVIDIA Brev H100 launcher: <https://brev.nvidia.com/environment/new?gpu=H100>
 
 ## First Principles
 
@@ -132,3 +133,4 @@ When choosing how to implement a workload after login:
 - start with Build on Spark if the goal is Spark-specific enablement
 - check Blueprints if the goal is an end-to-end AI application pattern
 - check NeMo Data Designer if the goal is synthetic dataset generation or data flywheel preparation
+- use the Brev H100 launcher if the workload requires a known cloud H100 target instead of this local ARM DGX host

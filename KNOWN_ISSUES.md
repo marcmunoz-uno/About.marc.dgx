@@ -91,3 +91,4 @@ When blocked, prefer official NVIDIA material over guesswork:
 - use Build on Spark for supported workload examples and remote-access-oriented getting-started flows
 - use Blueprints for reference architectures and workflow patterns
 - use NeMo Data Designer for supported synthetic-data generation flows
+- use the Brev H100 launcher when the local machine is the wrong execution target and a cloud GPU environment is acceptable

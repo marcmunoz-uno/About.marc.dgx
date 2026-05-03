@@ -18,8 +18,9 @@ This package is not a backup and does not include secrets. It documents the mach
 - NVIDIA Build on Spark portal: <https://build.nvidia.com/spark>
 - NVIDIA Blueprints catalog: <https://build.nvidia.com/blueprints>
 - NVIDIA NeMo Data Designer: <https://build.nvidia.com/nemo/data-designer>
+- NVIDIA Brev H100 environment launcher: <https://brev.nvidia.com/environment/new?gpu=H100>
 
-Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, recovery, container runtime, and support guidance. Use Build on Spark for workload playbooks, remote-access quickstarts, and framework-specific examples. Use Blueprints when an agent needs a supported application architecture or workflow pattern. Use NeMo Data Designer when the task involves synthetic data generation or hosted NeMo microservices workflows.
+Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, recovery, container runtime, and support guidance. Use Build on Spark for workload playbooks, remote-access quickstarts, and framework-specific examples. Use Blueprints when an agent needs a supported application architecture or workflow pattern. Use NeMo Data Designer when the task involves synthetic data generation or hosted NeMo microservices workflows. Use the Brev H100 launcher when the local DGX is not the right fit and a cloud H100 environment is acceptable.
 
 ## What This Does Not Include
 
