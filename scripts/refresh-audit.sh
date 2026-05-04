@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUT_DIR="${ROOT_DIR}/generated"
 STAMP="$(date '+%Y-%m-%d_%H-%M-%S')"
 RAW_DIR="${OUT_DIR}/raw-${STAMP}"

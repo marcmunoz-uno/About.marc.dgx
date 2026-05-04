@@ -92,6 +92,14 @@ During the 2026-05-03 audit:
 
 That usually means the execution environment is namespaced or restricted, not necessarily that CUDA is missing from the underlying host.
 
+During live host-side framework validation later that same day:
+
+- `cupy-cuda12x` installed successfully in a local `aarch64` venv
+- runtime access failed with `cudaErrorInsufficientDriver`
+- NVML could not load at all
+
+That is stronger evidence that the current host-visible NVIDIA userland is incomplete or mismatched for direct agent execution, even though device nodes are present.
+
 ## Recommended Policy For Agents
 
 - Treat `ctypes.CDLL(...)` success as proof of CUDA userland access.

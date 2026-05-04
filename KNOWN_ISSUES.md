@@ -92,3 +92,16 @@ When blocked, prefer official NVIDIA material over guesswork:
 - use Blueprints for reference architectures and workflow patterns
 - use NeMo Data Designer for supported synthetic-data generation flows
 - use the Brev H100 launcher when the local machine is the wrong execution target and a cloud GPU environment is acceptable
+
+## 6. Local Python CUDA Frameworks Can Install Before The Host Is Actually Ready
+
+Observed live on 2026-05-03:
+
+- `virtualenv.pyz` could create an `aarch64` venv successfully
+- `cupy-cuda12x` installed successfully
+- runtime still failed with `cudaErrorInsufficientDriver`
+
+Implication:
+
+- package install success is not proof of usable CUDA
+- always run a framework-level runtime probe after installation

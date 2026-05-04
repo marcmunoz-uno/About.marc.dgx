@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck disable=SC1091
 source "${SCRIPT_DIR}/bootstrap-agent-session.sh" >/dev/null
 
 VENV_DIR="${VENV_DIR:-${DGX_WORK_ROOT}/.venvs/agent-cuda}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
+VIRTUALENV_PYZ="${VIRTUALENV_PYZ:-/tmp/virtualenv.pyz}"
 
 if ! command -v "${PYTHON_BIN}" >/dev/null 2>&1; then
   echo "Missing Python interpreter: ${PYTHON_BIN}" >&2
@@ -14,13 +15,19 @@ if ! command -v "${PYTHON_BIN}" >/dev/null 2>&1; then
 fi
 
 if [ ! -d "${VENV_DIR}" ]; then
-  "${PYTHON_BIN}" -m venv "${VENV_DIR}"
+  if "${PYTHON_BIN}" -m ensurepip --version >/dev/null 2>&1; then
+    "${PYTHON_BIN}" -m venv "${VENV_DIR}"
+  else
+    if [ ! -f "${VIRTUALENV_PYZ}" ]; then
+      "${PYTHON_BIN}" -c "import urllib.request; urllib.request.urlretrieve('https://bootstrap.pypa.io/virtualenv.pyz', '${VIRTUALENV_PYZ}')"
+    fi
+    "${PYTHON_BIN}" "${VIRTUALENV_PYZ}" "${VENV_DIR}"
+  fi
 fi
 
 # shellcheck disable=SC1090
 source "${VENV_DIR}/bin/activate"
 
-python -m ensurepip --upgrade >/dev/null 2>&1 || true
 python -m pip install --upgrade pip setuptools wheel
 
 printf 'Python CUDA env ready\n'

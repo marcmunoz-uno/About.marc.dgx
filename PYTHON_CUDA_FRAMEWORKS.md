@@ -32,6 +32,8 @@ Default venv location:
 /home/mxrcmunoz/Desktop/.venvs/agent-cuda
 ```
 
+If `python3 -m venv` is unavailable on this host, the script falls back to the official `virtualenv.pyz` bootstrap automatically.
+
 3. Install the framework you actually need in that venv.
 
 Examples:
@@ -75,3 +77,26 @@ This script prepares the environment but does not force package installation. Ac
 - CUDA compatibility between the host runtime and the framework wheel
 
 If an installation fails, preserve the exact error and do not improvise a package recommendation without checking the framework's current ARM/CUDA support.
+
+## Live Validation On 2026-05-03
+
+From the host-side agent environment:
+
+- a local venv was created successfully using `virtualenv.pyz`
+- `cupy-cuda12x` installed successfully on `aarch64`
+- CuPy runtime probe failed with:
+
+```text
+cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version
+```
+
+- NVML probe failed with:
+
+```text
+NVMLError_LibraryNotFound
+```
+
+Implication:
+
+- Python framework packaging is now workable for agents on this host
+- but the host's NVIDIA driver and CUDA userland exposure still need correction before agents can rely on local GPU execution
