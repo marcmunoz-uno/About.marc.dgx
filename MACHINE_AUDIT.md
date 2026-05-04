@@ -37,6 +37,11 @@ Inference:
 
 Direct observations:
 
+- Native host probe on 2026-05-03 confirmed:
+  - `nvidia-smi -L` reports `GPU 0: NVIDIA GB10`
+  - `libcuda.so.1` loads successfully
+  - `libcudart.so.13` loads successfully
+  - `libcublas.so.13` loads successfully
 - NVIDIA device nodes exist:
   - `/dev/nvidia0`
   - `/dev/nvidiactl`
@@ -46,9 +51,10 @@ Direct observations:
 
 Implications:
 
-- The host has an NVIDIA driver stack active.
+- The host has an active NVIDIA driver stack.
+- The exact GPU is now proven: `NVIDIA GB10`.
+- Native CUDA userland is proven working from a real host shell.
 - GPUDirect Storage style device nodes are present.
-- A remote agent should assume GPU capability exists, but should verify exact model, CUDA version, and runtime health from a native SSH shell because `nvidia-smi` was not available in the audited Codex sandbox.
 
 If a future agent still cannot prove the exact GPU SKU or CUDA userland, it should downgrade its claim to one of these levels instead of guessing:
 

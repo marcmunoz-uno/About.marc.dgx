@@ -84,19 +84,24 @@ From the host-side agent environment:
 
 - a local venv was created successfully using `virtualenv.pyz`
 - `cupy-cuda12x` installed successfully on `aarch64`
-- CuPy runtime probe failed with:
-
-```text
-cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version
-```
-
-- NVML probe failed with:
-
-```text
-NVMLError_LibraryNotFound
-```
+- `torch==2.11.0` installed successfully
+- framework validation succeeded:
+  - `torch.cuda.is_available() == True`
+  - `torch.cuda.device_count() == 1`
+  - PyTorch device name: `NVIDIA GB10`
+  - CuPy device count: `1`
+  - CuPy device name: `NVIDIA GB10`
 
 Implication:
 
-- Python framework packaging is now workable for agents on this host
-- but the host's NVIDIA driver and CUDA userland exposure still need correction before agents can rely on local GPU execution
+- Python CUDA framework packaging is workable for agents on this host
+- native host-side GPU execution is proven for both PyTorch and CuPy
+
+## Remaining Gap
+
+The remaining failure observed on 2026-05-03 is container access:
+
+- `docker run --gpus=all ...` reached the Docker socket
+- but `mxrcmunoz` lacked permission to use `/var/run/docker.sock`
+
+That is a Docker group/access issue, not a CUDA userland issue.

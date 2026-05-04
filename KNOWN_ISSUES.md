@@ -95,13 +95,30 @@ When blocked, prefer official NVIDIA material over guesswork:
 
 ## 6. Local Python CUDA Frameworks Can Install Before The Host Is Actually Ready
 
-Observed live on 2026-05-03:
+Earlier on 2026-05-03, constrained sessions produced misleading failures.
+
+Final host-side validation showed:
 
 - `virtualenv.pyz` could create an `aarch64` venv successfully
 - `cupy-cuda12x` installed successfully
-- runtime still failed with `cudaErrorInsufficientDriver`
+- `torch==2.11.0+cu130` installed successfully
+- both CuPy and PyTorch enumerated `NVIDIA GB10`
 
 Implication:
 
-- package install success is not proof of usable CUDA
-- always run a framework-level runtime probe after installation
+- package install success alone is not proof of usable CUDA
+- but framework-level runtime probes now confirm this host is ready for native CUDA execution
+
+## 7. Docker GPU Access May Be Blocked By User Permissions
+
+Observed on 2026-05-03:
+
+- Docker GPU validation hit `/var/run/docker.sock`
+- access failed due to user permission, not missing CUDA runtime
+
+Mitigation:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```

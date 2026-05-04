@@ -23,50 +23,40 @@ Official sources:
 
 Observed from the current agent execution context:
 
-- NVIDIA device nodes exist under `/dev/nvidia*`
-- `nvidia-smi` is not visible on `PATH`
-- `docker` is not visible on `PATH`
-- `nvidia-ctk` is not visible on `PATH`
-- CUDA-aware Python packages can install on `aarch64`
-- runtime still fails with `cudaErrorInsufficientDriver`
-- NVML fails to load
+- a native SSH shell proves:
+  - `nvidia-smi -L` works
+  - the GPU is `NVIDIA GB10`
+  - `libcuda.so.1`, `libcudart.so.13`, and `libcublas.so.13` load successfully
+  - PyTorch and CuPy both enumerate the GPU successfully
+- Docker GPU validation reached the Docker socket but failed with a permission error for `mxrcmunoz`
 
 Implication:
 
-- the hardware likely exists and the kernel-side NVIDIA stack is at least partially present
-- but user-space runtime exposure does not currently match the supported DGX Spark software baseline for this agent environment
+- native host-side CUDA userland is working
+- the remaining supported-path gap is Docker access for the user account
 
-## What Needs To Be True
-
-For agents to rely on local CUDA execution, at least one of these supported paths must work.
+## Current State
 
 ### Path A: Native Host Userland
 
-- `nvidia-smi` runs successfully
-- `libcuda.so.1` and `libnvidia-ml.so.1` are loadable
-- CuPy or PyTorch can enumerate devices
+This path is now proven working.
 
 ### Path B: NVIDIA Container Runtime
 
-- `docker` runs
-- `docker run --gpus=all ... nvidia-smi` succeeds
-- agents can do GPU work inside containers even if the bare shell is minimal
+This path is probably present but still blocked for `mxrcmunoz` by Docker socket permissions.
 
 ## Recommended Remediation Order
 
-1. Validate whether the issue is only this constrained execution context.
-2. From a real SSH session on the box, run:
+1. Fix Docker access for the user:
 
 ```bash
-which docker
-which nvidia-smi
-which nvidia-ctk
+sudo usermod -aG docker $USER
+newgrp docker
 docker run -it --gpus=all nvcr.io/nvidia/cuda:13.0.1-devel-ubuntu24.04 nvidia-smi
 ```
 
-3. If Docker is present but the command fails, follow the DGX Spark container runtime troubleshooting path in the official docs.
-4. If Docker is absent from the host, reconcile that with the official DGX Spark software baseline before trying ad hoc CUDA installs.
-5. Only after Docker or native `nvidia-smi` works should agents rely on local CUDA execution.
+2. If the container probe still fails after Docker group access is fixed, follow the DGX Spark container runtime troubleshooting path in the official docs.
+3. Agents can already rely on native host-side CUDA execution even before the Docker path is fixed.
 
 ## Policy For Agents
 

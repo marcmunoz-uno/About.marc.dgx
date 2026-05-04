@@ -94,11 +94,14 @@ That usually means the execution environment is namespaced or restricted, not ne
 
 During live host-side framework validation later that same day:
 
+- a real host shell proved:
+  - `nvidia-smi -L` reports `NVIDIA GB10`
+  - `libcuda.so.1`, `libcudart.so.13`, and `libcublas.so.13` all load successfully
 - `cupy-cuda12x` installed successfully in a local `aarch64` venv
-- runtime access failed with `cudaErrorInsufficientDriver`
-- NVML could not load at all
+- `torch==2.11.0+cu130` installed successfully
+- both CuPy and PyTorch enumerate 1 device: `NVIDIA GB10`
 
-That is stronger evidence that the current host-visible NVIDIA userland is incomplete or mismatched for direct agent execution, even though device nodes are present.
+That is sufficient proof that native host-side CUDA userland is working for agent execution from a real SSH shell.
 
 ## Recommended Policy For Agents
 
