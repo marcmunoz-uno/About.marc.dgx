@@ -33,6 +33,7 @@ Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, re
 
 - `MACHINE_AUDIT.md` - observed host capabilities and constraints
 - `CUDA_USERLAND_ACCESS.md` - how agents should gain and verify CUDA userland access
+- `DGX_HOST_REMEDIATION.md` - the gap between the official DGX Spark baseline and the live host state, plus remediation order
 - `PYTHON_CUDA_FRAMEWORKS.md` - how agents should create a local Python CUDA environment and validate frameworks
 - `SSH_OPERATOR_GUIDE.md` - how a remote agent should behave after SSH login
 - `OPENCLAW_RUNTIME.md` - the local OpenClaw layout and working entrypoints
@@ -42,6 +43,7 @@ Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, re
 - `scripts/bootstrap-cuda-userland.sh` - export likely CUDA ARM paths and probe runtime visibility
 - `scripts/bootstrap-python-cuda-env.sh` - create or activate a local Python venv for CUDA-aware frameworks
 - `scripts/probe-cuda.sh` - future-safe CUDA reachability probe for remote agents
+- `scripts/probe-docker-gpu.sh` - official-style Docker GPU validation command for DGX Spark
 - `scripts/validate-python-cuda-frameworks.sh` - validate PyTorch/CuPy CUDA readiness in the agent environment
 - `examples/ssh_config.example` - SSH client template for a Mac operator
 - `examples/bootstrap-session.sh` - safe shell bootstrap for remote sessions

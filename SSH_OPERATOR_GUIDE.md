@@ -143,3 +143,9 @@ For agents launched from a Mac, prefer:
 ./examples/remote-agent-launch.sh marc-dgx
 ./examples/remote-agent-launch.sh marc-dgx /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/probe-cuda.sh
 ```
+
+If the host exposes Docker as expected by the DGX Spark docs, also try:
+
+```bash
+./examples/remote-agent-launch.sh marc-dgx /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/probe-docker-gpu.sh
+```
