@@ -31,6 +31,7 @@ Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, re
 
 ## Package Contents
 
+- `START_HERE_FOR_AGENTS.md` - single-entrypoint guide for agents landing on this device
 - `MACHINE_AUDIT.md` - observed host capabilities and constraints
 - `CUDA_USERLAND_ACCESS.md` - how agents should gain and verify CUDA userland access
 - `DGX_HOST_REMEDIATION.md` - the gap between the official DGX Spark baseline and the live host state, plus remediation order
