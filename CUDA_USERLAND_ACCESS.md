@@ -16,7 +16,7 @@ For practical CUDA userland access, the agent needs all of these:
 A native SSH shell on the host should be your baseline. From there:
 
 ```bash
-source /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/bootstrap-cuda-userland.sh
+source /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/bootstrap-agent-session.sh
 ```
 
 If CUDA is installed in the standard DGX-style location for this ARM host, that will export:
@@ -67,6 +67,21 @@ PY
 ```
 
 That is stronger proof than just finding `.so` files.
+
+## One-Command Probe
+
+For a future remote agent, the simplest safe check is:
+
+```bash
+/home/mxrcmunoz/Desktop/About.marc.dgx/scripts/probe-cuda.sh
+```
+
+That script bootstraps the DGX session first and then checks:
+
+- `nvidia-smi`
+- `/dev/nvidia*`
+- `ctypes.CDLL(...)` for core CUDA libraries
+- `torch.cuda` if PyTorch is installed
 
 ## Why This Broke In The Audit
 

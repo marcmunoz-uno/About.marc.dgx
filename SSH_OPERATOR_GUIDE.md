@@ -31,8 +31,7 @@ Recommended assumptions:
 Recommended bootstrap:
 
 ```bash
-source /home/mxrcmunoz/Desktop/About.marc.dgx/examples/bootstrap-session.sh
-source /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/bootstrap-cuda-userland.sh
+source /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/bootstrap-agent-session.sh
 ```
 
 If that package is not checked out on the host, manually export:
@@ -136,3 +135,10 @@ When choosing how to implement a workload after login:
 - check NeMo Data Designer if the goal is synthetic dataset generation or data flywheel preparation
 - use the Brev H100 launcher if the workload requires a known cloud H100 target instead of this local ARM DGX host
 - use `CUDA_USERLAND_ACCESS.md` and `scripts/bootstrap-cuda-userland.sh` if the workload needs local CUDA libraries
+
+For agents launched from a Mac, prefer:
+
+```bash
+./examples/remote-agent-launch.sh marc-dgx
+./examples/remote-agent-launch.sh marc-dgx /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/probe-cuda.sh
+```

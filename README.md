@@ -37,9 +37,12 @@ Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, re
 - `OPENCLAW_RUNTIME.md` - the local OpenClaw layout and working entrypoints
 - `KNOWN_ISSUES.md` - failures, caveats, and mitigations
 - `scripts/refresh-audit.sh` - rerun a native host audit and emit fresh markdown plus raw artifacts
+- `scripts/bootstrap-agent-session.sh` - one sourceable bootstrap for PATH, Git, OpenClaw, and CUDA-related env
 - `scripts/bootstrap-cuda-userland.sh` - export likely CUDA ARM paths and probe runtime visibility
+- `scripts/probe-cuda.sh` - future-safe CUDA reachability probe for remote agents
 - `examples/ssh_config.example` - SSH client template for a Mac operator
 - `examples/bootstrap-session.sh` - safe shell bootstrap for remote sessions
+- `examples/remote-agent-launch.sh` - Mac-side helper that SSHes in and bootstraps the DGX session automatically
 
 ## Quick Start
 
@@ -64,6 +67,20 @@ This creates:
 - `generated/raw-<timestamp>/...`
 
 The script is designed to degrade gracefully. If a shell cannot prove GPU SKU or CUDA userland, it records the uncertainty instead of inventing facts.
+
+## Remote Agent Bootstrap
+
+For future agents connecting from a Mac, use:
+
+```bash
+./examples/remote-agent-launch.sh marc-dgx /home/mxrcmunoz/Desktop/About.marc.dgx/scripts/probe-cuda.sh
+```
+
+Or to open an interactive bootstrapped shell:
+
+```bash
+./examples/remote-agent-launch.sh marc-dgx
+```
 
 For official follow-up after a refresh:
 
