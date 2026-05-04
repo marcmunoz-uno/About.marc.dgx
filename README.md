@@ -33,13 +33,16 @@ Use the DGX Spark User Guide for system behavior, first boot, DGX OS, update, re
 
 - `MACHINE_AUDIT.md` - observed host capabilities and constraints
 - `CUDA_USERLAND_ACCESS.md` - how agents should gain and verify CUDA userland access
+- `PYTHON_CUDA_FRAMEWORKS.md` - how agents should create a local Python CUDA environment and validate frameworks
 - `SSH_OPERATOR_GUIDE.md` - how a remote agent should behave after SSH login
 - `OPENCLAW_RUNTIME.md` - the local OpenClaw layout and working entrypoints
 - `KNOWN_ISSUES.md` - failures, caveats, and mitigations
 - `scripts/refresh-audit.sh` - rerun a native host audit and emit fresh markdown plus raw artifacts
 - `scripts/bootstrap-agent-session.sh` - one sourceable bootstrap for PATH, Git, OpenClaw, and CUDA-related env
 - `scripts/bootstrap-cuda-userland.sh` - export likely CUDA ARM paths and probe runtime visibility
+- `scripts/bootstrap-python-cuda-env.sh` - create or activate a local Python venv for CUDA-aware frameworks
 - `scripts/probe-cuda.sh` - future-safe CUDA reachability probe for remote agents
+- `scripts/validate-python-cuda-frameworks.sh` - validate PyTorch/CuPy CUDA readiness in the agent environment
 - `examples/ssh_config.example` - SSH client template for a Mac operator
 - `examples/bootstrap-session.sh` - safe shell bootstrap for remote sessions
 - `examples/remote-agent-launch.sh` - Mac-side helper that SSHes in and bootstraps the DGX session automatically
@@ -80,6 +83,13 @@ Or to open an interactive bootstrapped shell:
 
 ```bash
 ./examples/remote-agent-launch.sh marc-dgx
+```
+
+For Python framework setup after login:
+
+```bash
+/home/mxrcmunoz/Desktop/About.marc.dgx/scripts/bootstrap-python-cuda-env.sh
+/home/mxrcmunoz/Desktop/About.marc.dgx/scripts/validate-python-cuda-frameworks.sh
 ```
 
 For official follow-up after a refresh:

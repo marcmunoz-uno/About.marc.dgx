@@ -135,6 +135,7 @@ When choosing how to implement a workload after login:
 - check NeMo Data Designer if the goal is synthetic dataset generation or data flywheel preparation
 - use the Brev H100 launcher if the workload requires a known cloud H100 target instead of this local ARM DGX host
 - use `CUDA_USERLAND_ACCESS.md` and `scripts/bootstrap-cuda-userland.sh` if the workload needs local CUDA libraries
+- use `PYTHON_CUDA_FRAMEWORKS.md` if the workload needs PyTorch or CuPy from the agent environment
 
 For agents launched from a Mac, prefer:
 
